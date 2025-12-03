@@ -111,9 +111,12 @@ Zorg dat je gebruik maakt van `try`/`catch` om fouten correct op te vangen bij `
 
 ## Extra oefeningen
 
-### Oefening 1 – Een simpele Promise maken
+### Oefening 6 – Een simpele Promise maken
+
 #### Leerdoelen
+
 - Je leert hoe je zelf een Promise maakt en hoe je `resolve` en `reject` gebruikt.  
+
 #### Opdracht 
 We maken een functie die nagaat of er genoeg donuts in een doos zitten alvorens ze worden meegegeven aan de klant. Een doos kan 12 donuts bevatten.  
 1. Maak een functie `checkDonutStock()` die een Promise teruggeeft.  
@@ -121,37 +124,76 @@ We maken een functie die nagaat of er genoeg donuts in een doos zitten alvorens 
 3. Wanneer er minder dan 5 donuts zijn, moet de Promise *rejecten* met de boodschap *"Oh no! Not enough donuts!"*.  
 4. Gebruik `.then()` en `.catch()` om het resultaat te tonen in de console.
 
-### Oefening 2 – Promise chaining
+### Oefening 7 – Promise chaining
+
 #### Leerdoelen
+
 - Je leert hoe je meerdere Promises aan elkaar koppelt.  
+
 #### Opdracht  
+
 1. Maak een functie `getBartHomework()`, die na 1 seconde een Promise resolved met de boodschap "Math homework".  
 2. Maak een tweede functie `finishHomework(homework)` die na 1 seconde resolve met de boodschap `"Bart finished: <homework>"`, waarbij `<homework>` de boodschap bevat uit `getBartHomework()`.  
 3. Chain deze functies zodat Bart eerst zijn huiswerk ophaalt en vervolgens afwerkt.  
 4. Toon het resultaat in de console.
 
 
-### Oefening 3 – Callback hell herschrijven naar Promises
+### Oefening 8 – Callback hell herschrijven naar Promises
+
 #### Leerdoelen
 - Inzien hoe Promises callback hell oplossen.  
+
 #### Opdracht
+
 1. Je krijgt een callback-hell voorbeeld (vereenvoudigd).  
 2. Herschrijf het naar Promises.
 
 **Startcode (callback hell):**
+
 ```js
+// Functie 1: bestelling ophalen
+function getKrustyBurgerOrder(callback) {
+    setTimeout(() => {
+        const order = "Krusty Burger with extra cheese";
+        console.log("Order received:", order);
+        callback(order);
+    }, 1000);
+}
+
+// Functie 2: bestelling bereiden
+function prepareOrder(order, callback) {
+    setTimeout(() => {
+        const prepared = `Prepared: ${order}`;
+        console.log("Order prepared.");
+        callback(prepared);
+    }, 1500);
+}
+
+// Functie 3: bestelling leveren
+function deliverOrder(preparedOrder, callback) {
+    setTimeout(() => {
+        const delivered = `Delivered: ${preparedOrder}`;
+        console.log("Order delivered.");
+        callback(delivered);
+    }, 1000);
+}
+
+// Callback chain (callback hell)
 getKrustyBurgerOrder(function(order) {
-  prepareOrder(order, function(prepared) {
-    deliverOrder(prepared, function(delivered) {
-      console.log(delivered);
+    prepareOrder(order, function(prepared) {
+        deliverOrder(prepared, function(delivered) {
+            console.log(delivered);
+        });
     });
-  });
 });
 ```
 
-### Oefening 4 – Werken met `Promise.all`
+### Oefening 9 – Werken met `Promise.all`
+
 #### Leerdoelen
-- Je leert hoe je meerdere beloftes parallel uitvoert.  
+
+- Je leert hoe je meerdere Promises parallel uitvoert.  
+
 #### Opdracht
 1. Maak drie functies:  
    - `getLisaBook()` → resolve na 1.2s met boodschap *"Lisa's book"* 
@@ -162,9 +204,13 @@ getKrustyBurgerOrder(function(order) {
 
 
 ### Oefening 5 – Async/Await herschrijven
+
 #### Leerdoelen
+
 - Snappen hoe async/await Promises leesbaarder maakt.  
+
 #### Opdracht
-1. Herschrijf de code van oefening 2 naar async/await.  
+
+1. Herschrijf je oplossing van oefening 8 naar async/await.  
 2. Toon het resultaat in de console.  
 3. Gebruik een try/catch blok om fouten af te handelen.
