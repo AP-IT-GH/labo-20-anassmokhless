@@ -48,8 +48,6 @@ const requestNotificationPermission = async () => {
 
 requestNotificationPermission();
 
-console.log("test");
-
 
 
 
